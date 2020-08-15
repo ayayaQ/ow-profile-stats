@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overwatch Stats</title>
+    <script src="stats.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="head">
+        <h1>ow-profile-stats</h1>
+    </div>
+
+    <div id="searchSection">
+
+        <input type="text" name="userName" id="user">
+        <select name="regions" id="region">
+            <option value="us">us</option>
+            <option value="eu">eu</option>
+            <option value="asia">asia</option>
+        </select>
+        <select name="platforms" id="platform">
+            <option value="pc">PC</option>
+            <option value="xbl">Xbox</option>
+            <option value="psn">PSN</option>
+            <option value="nintendo-switch">Nintendo Switch</option>
+        </select>
+
+        <button onclick="startRequest()">Search</button>
+
+    </div>
+
+    <div id="profile"><img src="" alt="icon" id="icon">
+        <p id="name"></p>
+    </div>
+
+    <div id="stats">
+        <p class="stat" id="rating"></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|PT+Sans|Roboto&display=swap');
+
+html {
+    background-color: #b3e5fc;
+}
+
+div {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.315) 0 2px 2px;
+}
+
+input, select, button {
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #0277bd;
+    border-style: none;
+    padding: 4px;
+    color: white;
+    margin: 8px auto;
+}
+
+div#head {
+    display: flex;
+    justify-content: center;
+}
+
+div#head h1 {
+    color: white;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#searchSection, #head {
+    background-color: #004c8c;
+    padding: 16px;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+#profile, #stats {
+    display: flex;
+    flex-flow: row wrap;
+    visibility: hidden;
+    
+    align-items: center;
+    margin-top: 8px;
+    background-color: #0277bd;
+    padding: 16px;
+    font-family: 'Roboto';
+}
+
+#profile p {
+    font-size: 36px;
+    color: white;
+    font-weight: bolder;
+    padding-left: 16px;
+}
+
+div#profile img#icon {
+    border-radius: 15px;
+}
+
+#stats div.stat {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 8px;
+    padding: 8px;
+    color: rgba(0, 0, 0, 0.815);
+}
+
+#stats div.stat * {
+    margin: 8px;
+}
