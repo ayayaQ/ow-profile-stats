@@ -12,12 +12,12 @@
 <body>
 
     <div id="head">
-        <h1>ow-profile-stats</h1>
+        <h1>ow-profile-stats - <a href="https://github.com/ayayaQ/ow-profile-stats">github</a></h1>
     </div>
 
     <div id="searchSection">
 
-        <input type="text" name="userName" id="user">
+        <input type="text" name="userName" id="user" placeholder="Username">
         <select name="regions" id="region">
             <option value="us">us</option>
             <option value="eu">eu</option>
@@ -34,8 +34,13 @@
 
     </div>
 
-    <div id="profile"><img src="" alt="icon" id="icon">
-        <p id="name"></p>
+    <div id="profile">
+        <img src="" alt="icon" id="icon">
+        <div id="levelName" class="noShade">
+            <p id="name"></p>
+            <p id="level" class="sub"></p>
+            <p id="endorsement" class="sub"></p>
+        </div>
     </div>
 
     <div id="stats">

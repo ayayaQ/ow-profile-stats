@@ -9,6 +9,11 @@ div {
     box-shadow: rgba(0, 0, 0, 0.315) 0 2px 2px;
 }
 
+div.noShade {
+    border-radius: 0px;
+    box-shadow: rgba(0, 0, 0, 0) 0 0px 0px;
+}
+
 input, select, button {
     border-radius: 5px;
     font-family: 'Roboto';
@@ -19,6 +24,13 @@ input, select, button {
     padding: 4px;
     color: white;
     margin: 8px auto;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 18px;
 }
 
 div#head {
@@ -52,11 +64,32 @@ div#head h1 {
     font-family: 'Roboto';
 }
 
+div.category div {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+div.category div div.stat {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+div.category {
+    background-color: #004c8c;
+    margin: 16px auto;
+    padding: 8px;
+}
+
 #profile p {
     font-size: 36px;
     color: white;
     font-weight: bolder;
     padding-left: 16px;
+    margin: 16px auto
+}
+
+#profile p.sub {
+    font-size: 16px;
 }
 
 div#profile img#icon {
@@ -72,4 +105,13 @@ div#profile img#icon {
 
 #stats div.stat * {
     margin: 8px;
+}
+
+h1 {
+    color: white;
+    margin-left: 8px;
+}
+
+a:visited {
+    color: white;
 }
