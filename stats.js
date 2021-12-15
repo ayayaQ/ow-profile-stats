@@ -15,8 +15,10 @@ function getStats(url, callback) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             callback(request.responseText);
-        } else if (request.status >= 400) {
+        } else if (request.readyState == 4 && request.status >= 400) {
             notFound();
+        } else if (request.readyState == 1) {
+            loadingStats();
         }
     }
 
@@ -40,7 +42,6 @@ function startRequest() {
     getStats(url, function (response) {
 
         response = JSON.parse(response);
-        x = response;
 
         createStatRoot();
 
@@ -48,7 +49,6 @@ function startRequest() {
         document.getElementById("icon").src = response.icon;
         document.getElementById("level").textContent = "Level: " + calcLevel(response);
         document.getElementById("endorsement").textContent = "Endorsement: " + response.endorsement;
-        //document.getElementById("icon").style.display = "inline";
 
         document.getElementById("profile").style.display = "flex";
         makeVisible(document.getElementById("profile"));
@@ -181,7 +181,21 @@ function fillModeStats(mode, id) {
 function notFound() {
 
     createStatRoot();
-    createStat("Error", "Profile does not exist or an error happened.", "stats")
+    createStat("Error", "Profile does not exist or an error happened.", "stats");
+
+    document.getElementById("stats").style.justifyContent = "center";
+
+    document.getElementById("profile").style.display = "none";
+    makeVisible(document.getElementById("stats"));
+}
+
+/**
+ * Shows a message that will say that a profile is loading.
+ */
+function loadingStats() {
+
+    createStatRoot();
+    createStat("Loading", "Retrieving profile stats.", "stats");
 
     document.getElementById("stats").style.justifyContent = "center";
 
@@ -202,7 +216,5 @@ function calcLevel(profile) {
  * @param {Object} mode 
  */
 function calcWinRate(mode) {
-    return Math.trunc(mode.games.won / mode.games.played * 100);;
+    return Math.trunc(mode.games.won / mode.games.played * 100);
 }
-
-var x;
