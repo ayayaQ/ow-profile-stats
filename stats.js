@@ -70,13 +70,18 @@ function startRequest() {
                     createStat(element.role, element.level + "SR", SKILL_RATING);
                 }
 
-                fillModeStats(response.competitiveStats, COMPETITIVE);
+                //fillModeStats(response.competitiveStats, COMPETITIVE);
+                let root = ReactDOM.createRoot(document.getElementById(COMPETITIVE));
+                root.render(<ModeStats mode={response.competitiveStats} ></ModeStats>)
+                
 
             }
 
             //quick play stats creation
             createStatCategory("quick play", QUICK_PLAY);
-            fillModeStats(response.quickPlayStats, QUICK_PLAY);
+            //fillModeStats(response.quickPlayStats, QUICK_PLAY);
+            let root = ReactDOM.createRoot(document.getElementById(QUICK_PLAY));
+            root.render(<ModeStats mode={response.quickPlayStats} ></ModeStats>)
 
         }
         else {
@@ -103,6 +108,7 @@ function makeVisible(element) {
  * @param {string} h2 
  * @param {string} p 
  * @param {string} id 
+ * @deprecated
  */
 function createStat(h2, p, id) {
 
@@ -120,6 +126,11 @@ function createStat(h2, p, id) {
 
     document.getElementById(id).appendChild(div);
 }
+
+function Stat(props) {
+    return (<div className="stat"><h2>{props.h2}</h2><p>{props.p}</p></div>)
+}
+
 
 /**
  * Creates a stat category with a header and id
@@ -154,14 +165,18 @@ function createStatRoot() {
     let newStats = document.createElement("div");
     newStats.id = "stats";
     body.appendChild(newStats);
+
+    return ReactDOM.createRoot(newStats);
 }
 
 /**
  * Fills the stats div for the given mode
  * @param {Object} mode 
  * @param {string} id 
+ * @deprecated
  */
 function fillModeStats(mode, id) {
+
     createStat("games played", mode.games.played, id);
     createStat("games won", mode.games.won, id);
     let winRate = calcWinRate(mode);
@@ -173,6 +188,25 @@ function fillModeStats(mode, id) {
     createStat("medals gold", mode.awards.medalsGold, id);
     createStat("medals silver", mode.awards.medalsSilver, id);
     createStat("medals bronze", mode.awards.medalsBronze, id);
+
+}
+
+function ModeStats(props) {
+    let winRate = calcWinRate(props.mode);
+    const element = (
+        <React.Fragment>
+            <Stat h2="games played" p={props.mode.games.played}></Stat>
+            <Stat h2="games won" p={props.mode.games.won}></Stat>
+            <Stat h2="win rate" p={winRate + "%"}></Stat>
+            <Stat h2="cards" p={props.mode.awards.cards}></Stat>
+            <Stat h2="medals" p={props.mode.awards.medals}></Stat>
+            <Stat h2="medals gold" p={props.mode.awards.medalsGold}></Stat>
+            <Stat h2="medals silver" p={props.mode.awards.medalsSilver}></Stat>
+            <Stat h2="medals bronze" p={props.mode.awards.medalsBronze}></Stat>
+        </React.Fragment>
+    );
+
+    return element
 }
 
 /**
@@ -180,7 +214,7 @@ function fillModeStats(mode, id) {
  */
 function notFound() {
 
-    createStatRoot();
+    const root = createStatRoot();
     createStat("Error", "Profile does not exist or an error happened.", "stats");
 
     document.getElementById("stats").style.justifyContent = "center";
