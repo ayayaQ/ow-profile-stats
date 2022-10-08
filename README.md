@@ -1,3 +1,5 @@
+# Note: This no longer functions due to the shutdown of Overwatch
+
 # ow-profile-stats
 
 https://ayayaq.github.io/ow-profile-stats/
